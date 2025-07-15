@@ -85,13 +85,17 @@ const HTML_TEMPLATE = `
                 <label class="block text-sm font-medium text-gray-400 mb-2">选择采集站点</label>
                 <select id="apiSource" class="w-full bg-[#222] border border-[#333] text-white px-3 py-2 rounded-lg focus:outline-none focus:border-white transition-colors">
                     <option value="heimuer">黑莓影视 (heimuer)</option>
-                    <option value="ffzy">非凡影视(ffzy)</option>
                     <option value="dyttzy">电影天堂资源 (dyttzy)</option>
-                    <option value="ruyi">如意资源(ruyi)</option>
-                    <option value="bfzy">暴风资源(bfzy)</option>
                     <option value="tyyszy">天涯资源(tyyszy)</option>
                     <option value="hwba">华为吧(hwba)</option>
                     <option value="jisu">极速(jisu)</option>
+                    <option value="dbzy">豆瓣资源(dbzy)</option>
+                    <option value="mozhua">魔爪资源(mozhua)</option>
+                    <option value="mdzy">魔都资源(mdzy)</option>
+                    <option value="ffzy">非凡影视(ffzy)</option>
+                    <option value="zuid">最大资源(zuid)</option>
+                    <option value="bfzy">暴风资源(bfzy)</option>
+                    <option value="ruyi">如意资源(ruyi)</option>
                     <option value="custom">自定义接口</option>
                 </select>
             </div>
