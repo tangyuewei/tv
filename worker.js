@@ -598,14 +598,18 @@ async function handleRequest(request) {
 
         // 更新正则表达式以匹配新的 URL 格式
         let matches = [];
-        if (source === 'ffzy') {
-            matches = html.match(/(?<=\$)(https?:\/\/[^"'\s]+?\/\d{8}\/\d+_[a-f0-9]+\/index\.m3u8)/g) || [];
-            matches = matches.map(link => link.split('(')[1]);
-        } else {
-            //matches = html.match(/\$https?:\/\/[^"'\s]+?\.m3u8/g) || [];
-            matches = html.match(/\$https?:\/\/[^\s]+?\.m3u8/g) || []
-            matches = matches.map(link => link.substring(1)); // 移除开头的 $
-        }
+        // if (source === 'ffzy') {
+        //     matches = html.match(/(?<=\$)(https?:\/\/[^"'\s]+?\/\d{8}\/\d+_[a-f0-9]+\/index\.m3u8)/g) || [];
+        //     matches = matches.map(link => link.split('(')[1]);
+        // } else {
+        //     //matches = html.match(/\$https?:\/\/[^"'\s]+?\.m3u8/g) || [];
+        //     matches = html.match(/\$https?:\/\/[^\s]+?\.m3u8/g) || []
+        //     matches = matches.map(link => link.substring(1)); // 移除开头的 $
+        // }
+        
+        // 修改正则表达式，匹配以 $http 开头并且以 .m3u8 结尾的链接
+        matches = html.match(/\$https?:\/\/[^\s]+?\.m3u8/g) || [];
+        matches = matches.map(link => link.substring(1)); // 移除开头的 
 
         return new Response(
             JSON.stringify({
