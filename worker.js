@@ -593,10 +593,15 @@ async function handleRequest(request) {
         // }/index.php/vod/detail/id/${id}.html`;
         const detailUrl = `${customApi ? customApi : API_SITES[source].api}/index.php/vod/detail/id/${id}.html`;
         const detailUrl2 = `${customApi ? customApi : API_SITES[source].api}/api.php/provide/vod/?ac=detail&ids=${id}`;
-        const response = await fetch(detailUrl);
+        const response = await fetch(detailUrl, {
+                headers: {
+                    'User-Agent':
+                        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+                    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+                },
+            });
         const html = await response.text();
-        const response2 = await fetch(detailUrl2);
-        const data2 = await response2.text();
+
         // 更新正则表达式以匹配新的 URL 格式
         let matches = [];
         // if (source === 'ffzy') {
@@ -623,8 +628,7 @@ async function handleRequest(request) {
 
         return new Response(
             JSON.stringify({
-                data: response2,
-                data2: data2,
+                data:html,
                 episodes: matches,
                 detailUrl: detailUrl,
             }),
