@@ -587,10 +587,12 @@ async function handleRequest(request) {
     if (url.pathname === '/api/detail') {
         const id = url.searchParams.get('id');
         const source = url.searchParams.get('source') || 'heimuer';
-        const customApi = url.searchParams.get('customApi') || '';
-        const detailUrl = `https://r.jina.ai/${
-            customApi ? customApi : API_SITES[source].detail
-        }/index.php/vod/detail/id/${id}.html`;
+        const customApi2 = url.searchParams.get("customApi") || "";
+        const detailUrl = `https://r.jina.ai/${customApi2 ? customApi2 : API_SITES[source].detail}/index.php/vod/detail/id/${id}.html`;
+        // const customApi = url.searchParams.get('customApi') || '';
+        // const detailUrl = `https://r.jina.ai/${
+        //     customApi ? customApi : API_SITES[source].detail
+        // }/index.php/vod/detail/id/${id}.html`;
         const response = await fetch(detailUrl);
         const html = await response.text();
 
