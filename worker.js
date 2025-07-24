@@ -595,7 +595,8 @@ async function handleRequest(request) {
         const detailUrl2 = `${customApi ? customApi : API_SITES[source].api}/api.php/provide/vod/?ac=detail&ids=${id}`;
         const response = await fetch(detailUrl);
         const html = await response.text();
-
+        const response2 = await fetch(detailUrl2);
+        const data = await response2.text();
         // 更新正则表达式以匹配新的 URL 格式
         let matches = [];
         // if (source === 'ffzy') {
@@ -617,12 +618,8 @@ async function handleRequest(request) {
         matches = matches.map(link => link.startsWith('$') ? link.substring(1) : link);
         let data ='';
         if (matches.length === 0) {
-            const response2 = await fetch(detailUrl2);
-            data = await response2.json();
-            // 将 JSON 数据转换为字符串
-            const dataString = JSON.stringify(data);
-            matches = dataString.match(/\$?https?:\/\/[^\s]+?\.m3u8/g) || [];
-            matches = matches.map(link => link.startsWith('$') ? link.substring(1) : link);
+            // matches = dataString.match(/\$?https?:\/\/[^\s]+?\.m3u8/g) || [];
+            // matches = matches.map(link => link.startsWith('$') ? link.substring(1) : link);
         }
 
         return new Response(
