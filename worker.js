@@ -625,6 +625,8 @@ async function handleRequest(request) {
             // matches = dataString.match(/\$?https?:\/\/[^\s]+?\.m3u8/g) || [];
             // matches = matches.map(link => link.startsWith('$') ? link.substring(1) : link);
         }
+        //去除重复
+        matches = [...new Set(matches)];
 
         return new Response(
             JSON.stringify({
