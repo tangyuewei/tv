@@ -591,9 +591,8 @@ async function handleRequest(request) {
         // const detailUrl = `https://r.jina.ai/${
         //     customApi ? customApi : API_SITES[source].detail
         // }/index.php/vod/detail/id/${id}.html`;
-        // const detailUrl = `${customApi ? customApi : API_SITES[source].api}/index.php/vod/detail/id/${id}.html`;
-        const detailUrl = `${customApi ? customApi : API_SITES[source].api}/api.php/provide/vod/?ac=detail&ids=${id}`;
-        console.log(detailUrl);
+        const detailUrl = `${customApi ? customApi : API_SITES[source].api}/index.php/vod/detail/id/${id}.html`;
+        // const detailUrl = `${customApi ? customApi : API_SITES[source].api}/api.php/provide/vod/?ac=detail&ids=${id}`;
         const response = await fetch(detailUrl);
         const html = await response.text();
 
