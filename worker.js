@@ -608,8 +608,14 @@ async function handleRequest(request) {
         // }
         
         // 修改正则表达式，匹配以 $http 开头并且以 .m3u8 结尾的链接
-        matches = html.match(/\$https?:\/\/[^\s]+?\.m3u8/g) || [];
-        matches = matches.map(link => link.substring(1)); // 移除开头的 
+        // matches = html.match(/\$https?:\/\/[^\s]+?\.m3u8/g) || [];
+        // matches = matches.map(link => link.substring(1)); // 移除开头的 
+        // 修改后的正则表达式
+        const regex = /\$?https?:\/\/[^\s]+?\.m3u8/g;
+        // 使用正则表达式进行匹配
+        matches = html.match(regex) || [];
+        // 如果需要去掉前面的 $ 符号，可以使用 map 进行处理
+        matches = matches.map(link => link.startsWith('$') ? link.substring(1) : link);
 
         return new Response(
             JSON.stringify({
