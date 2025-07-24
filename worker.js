@@ -618,7 +618,7 @@ async function handleRequest(request) {
 
         return new Response(
             JSON.stringify({
-                response: response,
+                html: html,
                 episodes: matches,
                 detailUrl: detailUrl,
             }),
