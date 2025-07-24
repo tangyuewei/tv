@@ -619,7 +619,9 @@ async function handleRequest(request) {
         if (matches.length === 0) {
             const response2 = await fetch(detailUrl2);
             data = await response2.json();
-            matches = data.match(/\$?https?:\/\/[^\s]+?\.m3u8/g) || [];
+            // 将 JSON 数据转换为字符串
+            const dataString = JSON.stringify(data);
+            matches = dataString.match(/\$?https?:\/\/[^\s]+?\.m3u8/g) || [];
             matches = matches.map(link => link.startsWith('$') ? link.substring(1) : link);
         }
 
