@@ -596,7 +596,7 @@ async function handleRequest(request) {
         const response = await fetch(detailUrl);
         const html = await response.text();
         const response2 = await fetch(detailUrl2);
-        const data = await response2.text();
+        const data = await response2.json();
         // 更新正则表达式以匹配新的 URL 格式
         let matches = [];
         // if (source === 'ffzy') {
