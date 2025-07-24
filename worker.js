@@ -618,6 +618,7 @@ async function handleRequest(request) {
 
         return new Response(
             JSON.stringify({
+                response: response,
                 episodes: matches,
                 detailUrl: detailUrl,
             }),
