@@ -602,7 +602,8 @@ async function handleRequest(request) {
             matches = html.match(/(?<=\$)(https?:\/\/[^"'\s]+?\/\d{8}\/\d+_[a-f0-9]+\/index\.m3u8)/g) || [];
             matches = matches.map(link => link.split('(')[1]);
         } else {
-            matches = html.match(/\$https?:\/\/[^"'\s]+?\.m3u8/g) || [];
+            //matches = html.match(/\$https?:\/\/[^"'\s]+?\.m3u8/g) || [];
+            matches = html.match(/\$https?:\/\/[^\s]+?\.m3u8/g) || []
             matches = matches.map(link => link.substring(1)); // 移除开头的 $
         }
 
