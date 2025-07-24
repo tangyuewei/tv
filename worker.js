@@ -616,7 +616,6 @@ async function handleRequest(request) {
         matches = html.match(/\$?https?:\/\/[^\s]+?\.m3u8/g) || [];
         // 如果需要去掉前面的 $ 符号，可以使用 map 进行处理
         matches = matches.map(link => link.startsWith('$') ? link.substring(1) : link);
-        let data ='';
         if (matches.length === 0) {
             // matches = dataString.match(/\$?https?:\/\/[^\s]+?\.m3u8/g) || [];
             // matches = matches.map(link => link.startsWith('$') ? link.substring(1) : link);
