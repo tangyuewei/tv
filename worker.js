@@ -592,7 +592,7 @@ async function handleRequest(request) {
         //     customApi ? customApi : API_SITES[source].detail
         // }/index.php/vod/detail/id/${id}.html`;
         const detailUrl = `${customApi ? customApi : API_SITES[source].api}/index.php/vod/detail/id/${id}.html`;
-        // const detailUrl = `${customApi ? customApi : API_SITES[source].api}/api.php/provide/vod/?ac=detail&ids=${id}`;
+        const detailUrl2 = `${customApi ? customApi : API_SITES[source].api}/api.php/provide/vod/?ac=detail&ids=${id}`;
         const response = await fetch(detailUrl);
         const html = await response.text();
 
@@ -615,10 +615,17 @@ async function handleRequest(request) {
         matches = html.match(/\$?https?:\/\/[^\s]+?\.m3u8/g) || [];
         // 如果需要去掉前面的 $ 符号，可以使用 map 进行处理
         matches = matches.map(link => link.startsWith('$') ? link.substring(1) : link);
+        let data ='';
+        if (matches.length === 0) {
+            const response2 = await fetch(detailUrl2);
+            data = await response2.json();
+            matches = data.match(/\$?https?:\/\/[^\s]+?\.m3u8/g) || [];
+            matches = matches.map(link => link.startsWith('$') ? link.substring(1) : link);
+        }
 
         return new Response(
             JSON.stringify({
-                html: html,
+                data: data,
                 episodes: matches,
                 detailUrl: detailUrl,
             }),
