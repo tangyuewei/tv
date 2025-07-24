@@ -533,7 +533,7 @@ const API_SITES = {
         name: '无尽资源'
     },
     wwzy: {
-        api: 'https://wwzy.tv/api.php',
+        api: 'https://wwzy.tv',
         name: '旺旺短剧'
     },
 };
@@ -588,11 +588,11 @@ async function handleRequest(request) {
         const id = url.searchParams.get('id');
         const source = url.searchParams.get('source') || 'heimuer';
         const customApi = url.searchParams.get('customApi') || '';
-        const detailUrl = `https://r.jina.ai/${
-            customApi ? customApi : API_SITES[source].detail
-        }/index.php/vod/detail/id/${id}.html`;
-        const detailUrl2 = `${customApi ? customApi : API_SITES[source].api}/detail/id/${id}.html`;
-        console.log(detailUrl2);
+        // const detailUrl = `https://r.jina.ai/${
+        //     customApi ? customApi : API_SITES[source].detail
+        // }/index.php/vod/detail/id/${id}.html`;
+        const detailUrl = `${customApi ? customApi : API_SITES[source].api}/index.php/vod/detail/id/${id}.html`;
+        console.log(detailUrl);
         const response = await fetch(detailUrl);
         const html = await response.text();
 
