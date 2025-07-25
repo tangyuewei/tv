@@ -618,15 +618,15 @@ async function handleRequest(request) {
         // matches = matches.map(link => link.substring(1)); // 移除开头的 
         
         // 使用正则表达式进行匹配
-        matches = html.match(/\$?https?:\/\/[^\s]+?\.m3u8/g) || [];
+        matches = html.match(/\$https?:\/\/[^\s]+?\.m3u8/g) || [];
         // 如果需要去掉前面的 $ 符号，可以使用 map 进行处理
         matches = matches.map(link => link.startsWith('$') ? link.substring(1) : link);
         if (matches.length === 0) {
-            // matches = dataString.match(/\$?https?:\/\/[^\s]+?\.m3u8/g) || [];
+            // matches = dataString.match(/\$https?:\/\/[^\s]+?\.m3u8/g) || [];
             // matches = matches.map(link => link.startsWith('$') ? link.substring(1) : link);
         }
         //去除重复
-        matches = [...new Set(matches)];
+        // matches = [...new Set(matches)];
 
         return new Response(
             JSON.stringify({
